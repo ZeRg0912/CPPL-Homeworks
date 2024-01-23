@@ -16,26 +16,31 @@ int main() {
 			arr.get_element(i);
 		}*/
 
-		/*smart_array arr(5);
+		std::cout << "Задание #1: \n";
+		smart_array arr(5);
 		arr.add_element(1);
 		arr.add_element(4);
 		arr.add_element(155);
 		arr.add_element(14);
 		arr.add_element(15);
-		std::cout << arr.get_element(1) << std::endl;*/
+		std::cout << arr.get_element(1) << std::endl;
 
-		smart_array arr(5);
-		arr.add_element(1);
-		arr.add_element(4);
-		arr.add_element(155);
-		arr.print();
+		std::cout << "\nЗадание #2: \n";
+		smart_array arr1(5);
+		arr1.add_element(1);
+		arr1.add_element(4);
+		arr1.add_element(155);
+		std::cout << "A ";
+		arr1.print();
 
 		smart_array new_array(2);
 		new_array.add_element(44);
 		new_array.add_element(34);
+		std::cout << "B ";
 		new_array.print();
 
 		arr = new_array;
+		std::cout << "A ";
 		arr.print();
 
 	}

@@ -1,6 +1,6 @@
 #include "smart_array.h"
 
-smart_array::smart_array(int init_size) : data(new int[init_size]), size(init_size) {}
+smart_array::smart_array(int init_size) : data(new int[init_size] {}), size(init_size) {}
 
 smart_array::~smart_array() {
 	delete[] data;
@@ -28,9 +28,9 @@ int smart_array::get_element(int index) {
 void smart_array::print() {
 	std::cout << "Массив: ";
 	for (int i = 0; i < size; i++) {
-		std::cout << data[i] << " ";
+		if (i != size - 1) std::cout << data[i] << ", ";
+		else std::cout << data[i] << std::endl;
 	}
-	std::cout << std::endl;
 }
 
 smart_array& smart_array::operator=(const smart_array& other) {
