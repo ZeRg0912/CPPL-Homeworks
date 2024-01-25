@@ -1,11 +1,5 @@
 #include "smart_array.h"
 
-smart_array::smart_array(int init_size) : data(new int[init_size] {}), size(init_size) {}
-
-smart_array::~smart_array() {
-	delete[] data;
-}
-
 void smart_array::add_element(int element) {
 	if (last_index < size) {
 		data[last_index] = element;

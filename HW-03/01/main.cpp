@@ -25,6 +25,7 @@ int main() {
 		arr.add_element(15);
 		arr.print();
 		std::cout << arr.get_element(1) << std::endl;
+		//std::cout << arr.get_element(-1) << std::endl;
 
 		std::cout << "\nЗадание #2: \n";
 		smart_array arr1(5);
