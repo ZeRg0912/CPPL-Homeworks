@@ -11,7 +11,7 @@ void smart_array::add_element(int element) {
 }
 
 int smart_array::get_element(int index) {
-	if (index < size) {
+	if (index < size && index > 0) {
 		return data[index];
 	}
 	else {
