@@ -7,9 +7,9 @@ smart_array::~smart_array() {
 }
 
 void smart_array::add_element(int element) {
-	if (current_index < size) {
-		data[current_index] = element;
-		current_index++;
+	if (last_index < size) {
+		data[last_index] = element;
+		last_index++;
 	}
 	else {
 		throw std::overflow_error("Массив заполнен! Не удалось добавить элемент\n");
@@ -37,7 +37,7 @@ smart_array& smart_array::operator=(const smart_array& other) {
 	if (this != &other) {
 		delete[] data;
 		size = other.size;
-		current_index = other.current_index;
+		last_index = other.last_index;
 		data = new int[size];
 		for (int i = 0; i < size; i++) {
 			data[i] = other.data[i];

@@ -23,6 +23,7 @@ int main() {
 		arr.add_element(155);
 		arr.add_element(14);
 		arr.add_element(15);
+		arr.print();
 		std::cout << arr.get_element(1) << std::endl;
 
 		std::cout << "\nЗадание #2: \n";

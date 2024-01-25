@@ -7,7 +7,7 @@ class smart_array {
 private:
 	int* data;
 	int size;
-	int current_index;
+	int last_index;
 public:
 	smart_array(int init_size);
 	~smart_array();
