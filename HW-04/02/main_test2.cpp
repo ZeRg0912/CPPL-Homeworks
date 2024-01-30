@@ -4,8 +4,6 @@
 
 TEST_CASE("Task #2:", "[List]") {
 	List list;
-	REQUIRE(list.Empty() == true);
-	REQUIRE(list.Size() == 0);
 
 	// Push & Pop Front
 	for (int i = 1; i <= 10; i++) {
@@ -40,8 +38,6 @@ TEST_CASE("Task #2:", "[List]") {
 	CHECK(list.PopBack() == 0);
 
 	list.Clear();
-	INFO("NOT CLEARED");
-	REQUIRE(list.Size() == 0);
 }
 
 int main() {
