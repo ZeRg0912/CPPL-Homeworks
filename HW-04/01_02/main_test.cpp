@@ -45,6 +45,8 @@ TEST_CASE("Task #2:", "[List]") {
 		REQUIRE(list.Size() == i - 1);
 	}
 
+	CHECK(list.PopFront() == -1);
+
 	// Push & Pop Back
 	for (int i = 1; i <= 10; i++) {
 		list.PushBack(i);
@@ -57,6 +59,8 @@ TEST_CASE("Task #2:", "[List]") {
 		INFO("WRONG SIZE");
 		REQUIRE(list.Size() == i - 1);
 	}
+
+	CHECK(list.PopBack() == 0);
 
 	list.Clear();
 	INFO("NOT CLEARED");
