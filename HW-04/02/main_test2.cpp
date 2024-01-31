@@ -1,6 +1,7 @@
 #include "../List.cpp"
-#include "catch2/catch_test_macros.hpp"
-#include "catch2/catch_session.hpp"
+#include <catch2/catch_all.hpp>
+//#include <catch2/catch_test_macros.hpp>
+//#include <catch2/catch_session.hpp>
 
 TEST_CASE("Task #2:", "[List]") {
 	List list;
@@ -19,7 +20,8 @@ TEST_CASE("Task #2:", "[List]") {
 	}
 
 	// Check for empty list
-	REQUIRE_THROWS(list.PopFront());
+	//REQUIRE_THROWS(list.PopFront());
+	REQUIRE_THROWS_WITH(list.PopFront(), "list is empty");
 
 	// Push & Pop Back
 	for (int i = 1; i <= 10; i++) {
@@ -35,7 +37,8 @@ TEST_CASE("Task #2:", "[List]") {
 	}
 
 	// Check for empty list
-	REQUIRE_THROWS(list.PopBack());
+	//REQUIRE_THROWS(list.PopBack());
+	REQUIRE_THROWS_WITH(list.PopBack(), "list is empty");
 
 	list.Clear();
 }
