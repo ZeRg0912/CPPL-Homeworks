@@ -18,8 +18,8 @@ TEST_CASE("Task #2:", "[List]") {
 		REQUIRE(list.Size() == i - 1);
 	}
 
-	// Check for rmpty list
-	CHECK(list.PopFront() == -1);
+	// Check for empty list
+	REQUIRE_THROWS(list.PopFront());
 
 	// Push & Pop Back
 	for (int i = 1; i <= 10; i++) {
@@ -34,8 +34,8 @@ TEST_CASE("Task #2:", "[List]") {
 		REQUIRE(list.Size() == i - 1);
 	}
 
-	// Check for rmpty list
-	CHECK(list.PopBack() == 0);
+	// Check for empty list
+	REQUIRE_THROWS(list.PopBack());
 
 	list.Clear();
 }
