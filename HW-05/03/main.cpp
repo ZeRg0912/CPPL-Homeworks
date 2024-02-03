@@ -1,39 +1,25 @@
 ﻿#include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
-class print {
+class simple_functor {
 public:
-	void operator()(const vector<int>& v) {
+	// print vector
+	template<class T>
+	void print(vector<T>& v) {
 		cout << "[IN]: ";
 		for (int i = 0; i < v.size(); i++) {
 			if (i != v.size() - 1) cout << v[i] << ", ";
 			else cout << v[i] << endl;
 		}
 	}
-};
 
-class get_count {
-public:
-	get_count() = default;
-	int operator()(const vector<int>& v) {
-		int count = 0;
-		for (auto& element : v) {
-			if (element % 3 == 0) {
-				count++;
-			}
-		}
-		cout << "[OUT]: get_count() = " << count << endl;
-		return count;
-	}
-};
-
-class get_sum {
-public:
-	get_sum() = default;
-	int operator()(const vector<int>& v) {
-		int sum = 0;
+	// get_sum variable for int
+	template<class T>
+	T get_sum(vector<T>& v) {
+		T sum = 0;
 		for (auto& element : v) {
 			if (element % 3 == 0) {
 				sum += element;
@@ -42,23 +28,62 @@ public:
 		cout << "[OUT]: get_sum() = " << sum << endl;
 		return sum;
 	}
+
+	// get_sum variable for double
+	template<>
+	double get_sum(vector<double>& v) {
+		double sum = 0;
+		for (auto& element : v) {
+			if (!fmod(element, 3)) {
+				sum += element;
+			}
+		}
+		cout << "[OUT]: get_sum() = " << sum << endl;
+		return sum;
+	}
+
+	// get_count variable for int
+	template<class T>
+	T get_count(vector<T>& v) {
+		T count = 0;
+		for (auto& element : v) {
+			if (!fmod(element, 3)) {
+				count++;
+			}
+		}
+		cout << "[OUT]: get_count() = " << count << endl;
+		return count;
+	}
+
+	// get_count variable for double
+	template<>
+	double get_count(vector<double>& v) {
+		double count = 0;
+		for (auto& element : v) {
+			if (!fmod(element, 3)) {
+				count++;
+			}
+		}
+		cout << "[OUT]: get_count() = " << count << endl;
+		return count;
+	}
+
+	// functor 
+	template<class T>
+	void operator()(vector<T>& v) {
+		print(v);
+		get_sum(v);
+		get_count(v);
+	}
 };
 
 int main() {
-	print print;
-	get_sum get_sum;
-	get_count get_cout;
-	vector<int> vec = { 4,1,3,6,25,54 };
-	vector<int> vec2 = { 12,18,2,5,85 };
+	simple_functor fc;
 
-	print(vec);
-	get_sum(vec);
-	get_cout(vec);
+	vector<int> vec = { 4, 1, 3, 6, 25, 54 };
+	vector<double> vec2 = { 12.00, 15.45, 2.51, 5.55, 85.25 }; 
 
-	print(vec2);
-	get_sum(vec2);
-	get_cout(vec2);
-
-
+	fc(vec);
+	fc(vec2);
 	return 0;
 }
