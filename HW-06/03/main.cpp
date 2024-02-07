@@ -74,7 +74,7 @@ public:
 	}
 
 	MyVector& operator=(const MyVector& other) {
-		if (this != other) {
+		if (this != &other) {
 			delete[] data;
 			size = other.size;
 			capacity = other.capacity;
@@ -98,29 +98,49 @@ public:
 int main() {
 	MyVector<int> a;
 	MyVector<double> b = { 0.2, 1.22, 3.25 };
+	MyVector<int> c = { 5, 6, 7, 8 };
+	std::cout << "\nVector a:\n";
 	a.print();
 	a.push_back(5);
+	std::cout << "\nVector a after push_back:\n";
 	a.print();
 	for (int i = 0; i < 10; i++) {
 		a.push_back(i);
 	}
+	std::cout << "\nVector a after push_back cycle:\n";
 	a.print();
 	for (int i = 0; i < 10; i++) {
 		a.pop_back();
 	}
+	std::cout << "\nVector a after pop_back and fit:\n";
 	a.shrink_to_fit();
 	a.print();
 
 	a[0] = 2;
+	std::cout << "\nVector a after a[0] = 2\n";
 	a.print();
 
+	std::cout << "\nVector a after .at():\n";
 	std::cout << a.at(0) << std::endl;
+
+	std::cout << "\nVector a try catch after .at() with index out of range:\n";
 	try {
 		std::cout << a.at(5) << std::endl;
 	}
 	catch (const std::out_of_range& err) {
 		std::cerr << "Exception caught: " << err.what() << std::endl;
 	}
+
+	std::cout << "\nVector b :\n";
+	b.print();
+
+	std::cout << "\nVector a after all operations:\n";
+	a.print();
+	a = c;
+	std::cout << "\nVector a after (a = c)\n";
+	a.print();
+	std::cout << "\nVector c :\n";
+	c.print();
 
 	return 0;
 }
