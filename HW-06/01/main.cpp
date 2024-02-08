@@ -31,8 +31,9 @@ void solution(std::string& input) {
 	std::cout << "[OUT]:\n";
 	for (const auto& element : sorted) std::cout << element.character << ": " << element.frequency << std::endl;
 
+#if 0
 	//realise v2
-	/*std::vector<std::pair<char, int>> sorted(char_freq.begin(), char_freq.end());
+	std::vector<std::pair<char, int>> sorted(char_freq.begin(), char_freq.end());
 	std::sort(sorted.begin(), sorted.end(),
 				[](const std::pair<char, int>& a, const std::pair<char, int>& b) {
 					return a.second > b.second;
@@ -41,7 +42,8 @@ void solution(std::string& input) {
 	std::cout << "[OUT]:\n";
 	for (const auto& pair : sorted) {
 		std::cout << pair.first << ": " << pair.second << std::endl;
-	}*/
+	}*
+#endif
 
 }
 
