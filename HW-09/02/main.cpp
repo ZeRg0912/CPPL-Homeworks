@@ -232,6 +232,22 @@ int main() {
 			<< std::endl;
 		std::cout << std::string(70, '=') << "\n";		
 
+		number2 = 78524;
+
+		std::cout << "\033[32mAssignment with move: \033[0m\n";
+		std::cout << "before move assignment: number1 = "
+			<< number1
+			<< " & number2 = "
+			<< number2
+			<< std::endl;
+		number1 = BigInt(std::move(number2));
+		std::cout << "After move assignment: number1 = "
+			<< number1
+			<< " & number2 = "
+			<< number2
+			<< std::endl;
+		std::cout << std::string(70, '=') << "\n";
+
 		std::cout << "\033[32mAssignment with move: \033[0m\n";
 		std::cout << "before move assignment: number1 = "
 			<< number1
