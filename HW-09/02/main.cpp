@@ -220,8 +220,25 @@ int main() {
 			<< " & number2 = "
 			<< number2
 			<< std::endl;
-
 		std::cout << std::string(70, '-') << "\n";
+
+		number1 = "114575";
+
+		std::cout << "\033[32mAssignment with move: \033[0m\n";
+		std::cout << "before move assignment: number1 = "
+			<< number1
+			<< " & number2 = "
+			<< number2
+			<< std::endl;
+		number1 = std::move(number2);
+		std::cout << "After move assignment: number1 = "
+			<< number1
+			<< " & number2 = "
+			<< number2
+			<< std::endl;
+		std::cout << std::string(70, '=') << "\n";
+
+		std::cout << "\033[32mCopy constructor w/o move: \033[0m\n";
 		number1 = "114575";
 		number2 = BigInt(number1); 
 		std::cout << "\033[32mAfter number1 = string(114575)) & number2 = BigInt(number1):\033[0m\n"
@@ -234,7 +251,21 @@ int main() {
 
 		number2 = 78524;
 
-		std::cout << "\033[32mAssignment with move: \033[0m\n";
+		std::cout << "\033[32mCopy constructor with move: \033[0m\n";
+		std::cout << "before move assignment: number1 = "
+			<< number1
+			<< " & number2 = "
+			<< number2
+			<< std::endl;
+		number1 = BigInt(std::move(number2));
+		std::cout << "After move assignment: number1 = "
+			<< number1
+			<< " & number2 = "
+			<< number2
+			<< std::endl;
+		std::cout << std::string(70, '-') << "\n";
+
+		std::cout << "\033[32mCopy constructor with move & no value: \033[0m\n";
 		std::cout << "before move assignment: number1 = "
 			<< number1
 			<< " & number2 = "
@@ -247,21 +278,6 @@ int main() {
 			<< number2
 			<< std::endl;
 		std::cout << std::string(70, '=') << "\n";
-
-		std::cout << "\033[32mAssignment with move: \033[0m\n";
-		std::cout << "before move assignment: number1 = "
-			<< number1
-			<< " & number2 = "
-			<< number2
-			<< std::endl;
-		number1 = BigInt(std::move(number2));
-		std::cout << "After move assignment: number1 = "
-			<< number1
-			<< " & number2 = "
-			<< number2
-			<< std::endl;
-		std::cout << std::string(70, '=') << "\n";
-
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
