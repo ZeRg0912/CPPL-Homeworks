@@ -8,11 +8,13 @@ private:
 	std::string value;
 public:
 	// Constructors
+#if 0
 	BigInt(const std::string& num) {
 		value = "";
 		if (!num.empty() && num.find_first_not_of("0123456789") == std::string::npos) value = num;
 		else throw ("ERROR! not number");
 	}
+#endif
 
 	BigInt(unsigned long long num) {
 		value = "";
@@ -31,13 +33,17 @@ public:
 		value = other.value;
 	}
 
-	// Ќе понимаю почему не работает, просто не присваиваютс€ в value значени€
-#if 0 
+	BigInt(BigInt&& other) noexcept {
+		value = std::move(other.value);
+	}
+
+	// «аработало когда убрал (- '0') в value.push_back(num[i] - '0');
+#if 1 
 	BigInt(const std::string& num) {
 		value = "";
 		for (int i = 0; i < num.size(); i++) {
 			if (!isdigit(num[i])) throw ("ERROR! not number");
-			value.push_back(num[i] - '0');
+			value.push_back(num[i]);
 		}
 	}
 #endif
@@ -77,14 +83,20 @@ public:
 	BigInt& operator=(BigInt&& other) noexcept {
 		if (this != &other) {
 			value = std::move(other.value);
-			other.value = "0";
 		}
 		return *this;
 	}
 
-	BigInt& operator=(BigInt& other) noexcept {
+	BigInt& operator=(BigInt& other) {
 		if (this != &other) {
 			value = other.value;
+		}
+		return *this;
+	}
+
+	BigInt& operator=(const std::string& string) {
+		if (value != string) {
+			value = string;
 		}
 		return *this;
 	}
@@ -208,9 +220,17 @@ int main() {
 			<< " & number2 = "
 			<< number2
 			<< std::endl;
-		std::cout << std::string(70, '=') << "\n";
 
-		number1 = 114575;
+		std::cout << std::string(70, '-') << "\n";
+		number1 = "114575";
+		number2 = BigInt(number1); 
+		std::cout << "\033[32mAfter number1 = string(114575)) & number2 = BigInt(number1):\033[0m\n"
+			<< "number1 = "
+			<< number1
+			<< " & number2 = "
+			<< number2
+			<< std::endl;
+		std::cout << std::string(70, '=') << "\n";		
 
 		std::cout << "\033[32mAssignment with move: \033[0m\n";
 		std::cout << "before move assignment: number1 = "
@@ -218,13 +238,14 @@ int main() {
 			<< " & number2 = "
 			<< number2
 			<< std::endl;
-		number1 = std::move(number2);
+		number1 = BigInt(std::move(number2));
 		std::cout << "After move assignment: number1 = "
 			<< number1
 			<< " & number2 = "
 			<< number2
 			<< std::endl;
 		std::cout << std::string(70, '=') << "\n";
+
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
