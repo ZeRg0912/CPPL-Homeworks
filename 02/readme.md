@@ -20,7 +20,7 @@
 
 ### Задание 
 
-[Программа с ошибками](https://github.com/netology-code/cppl-homeworks/tree/main/02/01).
+[Программа с ошибками](01).
 
 ------
 
